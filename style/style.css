@@ -1,0 +1,95 @@
+.box{
+    width: 150px;
+    height: 150px;
+    background-color: antiquewhite;
+    border-radius: 5px;
+    border: black 2px solid;
+    margin: 20px;
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+.button {
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    color: #ffffff;
+    font-size: 12px;
+    background: #3498db;
+    padding: 5px 10px 5px 10px;
+    margin: 5px 10px 5px 10px;
+    text-decoration: none;
+}
+
+.button2 {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color: #ffffff;
+    font-size: 15px;
+    background: #FF0000;
+    padding: 1px 1px 1px 1px;
+    margin: 5px 5px 5px 5px;
+    text-decoration: none;
+}
+
+.button3 {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color: #ffffff;
+    font-size: 15px;
+    background: gold;
+    padding: 1px 1px 1px 1px;
+    margin: 5px 5px 5px 5px;
+    text-decoration: none;
+}
+
+.deleteBtn{
+    color: red;
+}
+
+.listContainer{
+    border-radius: 5px;
+    border: black 2px solid;
+    margin: 20px;
+}
+
+.listContainer li{
+    padding: 2px;
+}
+
+table {
+    color: #333;
+    font-family: Helvetica, Arial, sans-serif;
+    width: 640px;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+td, th {
+    border: 1px solid;
+    height: 100%;
+}
+
+th {
+    background: #DFDFDF;
+    font-weight: bold;
+}
+
+td {
+    background: #FAFAFA;
+    text-align: center;
+}
+
+tr:first-child td {
+    background: #F1F1F1;
+}
+
+.two{
+    display: inline-block;
+    width: 41%;
+    margin: 2%;
+}
