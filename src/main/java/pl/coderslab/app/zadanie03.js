@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var typeVal = type.value;
 
         $.ajax({
-            url: "http://localhost:8282/books",
+            url: "http://localhost:8282/books/",
             data: JSON.stringify({
                 isbn: isbnVal,
                 title: titleVal,
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function showAllBooks() {
         $.ajax({
-            url: "http://localhost:8282/books" ,
+            url: "http://localhost:8282/books/" ,
             data: {},
             type: "GET",
             dataType: "JSON"
