@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>CodersLab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="/pl/coderslab/app/zadanie03.js"></script>
-    <link rel="stylesheet" href="/book-api/style/style.css">
+    <script src="../app/zadanie03.js"></script>
+    <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
 <label>

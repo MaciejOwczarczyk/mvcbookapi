@@ -185,6 +185,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('Wykona sie zawsze, xhr: ', xhr);
                 console.log('Wykona sie zawsze, status: ', status);
             });
+
     };
     showAllBooks();
 });
