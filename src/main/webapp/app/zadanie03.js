@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var typeVal = type.value;
 
         $.ajax({
-            url: "http://localhost:8282/books/",
+            url: "/books/post",
             data: JSON.stringify({
                 isbn: isbnVal,
                 title: titleVal,
@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }),
             type: "POST",
             dataType: "JSON",
+            contentType: "application/json",
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -35,9 +36,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     alert('Book has been added');
                 } else {
                     alert('Failed adding book: ' + data.status + ', ' + data.errorMessage)
-                };
+                }
             }
-        })
+        });
         location.reload();
 
         isbn.value = "";
@@ -51,10 +52,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function showAllBooks() {
         $.ajax({
-            url: "http://localhost:8282/books/" ,
+            url: "/books/get" ,
             data: {},
             type: "GET",
-            dataType: "JSON"
+            dataType: "JSON",
+            contentType: "application/json"
         })
             .done(function(result) {
                 // console.log('Udalo sie! result: ', result);
@@ -80,16 +82,17 @@ document.addEventListener('DOMContentLoaded', function() {
                     newTitle.insertBefore(editButton, div);
                     list.appendChild(newTitle);
 
-                };
+                }
                 var title = document.querySelectorAll(".title");
                 for (var i = 0; i < title.length ; i++) {
                     title[i].addEventListener("click", function () {
                         var bookId = this.getAttribute("id");
                         $.ajax({
-                            url: "http://localhost:8282/books/" + bookId ,
+                            url: "/books/get/" + bookId ,
                             data: {},
                             type: "GET",
-                            dataType: "JSON"
+                            dataType: "JSON",
+                            contentType: "application/json"
                         })
                             .done(function (result) {
                                 var all = document.querySelectorAll('p[id]');
@@ -97,32 +100,30 @@ document.addEventListener('DOMContentLoaded', function() {
                                     if (all[j].getAttribute("id") == parseInt(result.id)){
                                         all[j].lastElementChild.innerText = "Id: " + result.id + " Isbn: " + result.isbn + " Title: " + result.title
                                         + " Author: " + result.author + " Publisher: " + result.publisher + " Type: " + result.type;
-                                    };
+                                    }
 
-                                };
+                                }
                             });
                     });
-                };
+                }
 
                 var deleteButtons = document.querySelectorAll("a.button2");
                 for (var i = 0; i < deleteButtons.length ; i++) {
                     deleteButtons[i].addEventListener("click", function () {
                         var deleteId = this.getAttribute("id");
                         $.ajax({
-                            url: "http://localhost:8282/books/" + deleteId ,
+                            url: "/books/delete/" + deleteId ,
                             data: {},
                             type: "DELETE",
                             dataType: "JSON"
-                        })
-                            .done(function () {
-                                location.reload();
-                            });
+                        });
+                            location.reload()
                     });
-                };
+                }
 
-                var editButton = document.querySelectorAll(("a.button3"));
-                for (var i = 0; editButton.length; i++) {
-                    editButton[i].addEventListener("click", function () {
+                var newEditButton = document.querySelectorAll(("a.button3"));
+                for (var i = 0; newEditButton.length; i++) {
+                    newEditButton[i].addEventListener("click", function () {
 
                         var isbn = document.querySelector("#isbn");
                         var title = document.querySelector("#title");
@@ -132,10 +133,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
                         var book = this.getAttribute("id");
                         $.ajax({
-                            url: "http://localhost:8282/books/" + book ,
+                            url: "/books/get/" + book ,
                             data: {},
                             type: "GET",
-                            dataType: "JSON"
+                            dataType: "JSON",
+                            contentType: "application/json"
                         })
                             .done(function (result) {
                                 var all = document.querySelectorAll('p[id]');
@@ -146,13 +148,13 @@ document.addEventListener('DOMContentLoaded', function() {
                                         author.value = result.author;
                                         publisher.value = result.publisher;
                                         type.value = result.type;
-                                    };
-                                };
+                                    }
+                                }
 
                                 var newSaveButton = document.querySelector("#saveBtn");
                                 newSaveButton.addEventListener("click", function () {
                                     $.ajax({
-                                        url: "http://localhost:8282/books/" + book,
+                                        url: "/books/put/" + book,
                                         data: JSON.stringify({
                                             id : book,
                                             isbn: isbn.value,
@@ -163,11 +165,11 @@ document.addEventListener('DOMContentLoaded', function() {
                                         }),
                                         type: "PUT",
                                         dataType: "JSON",
+                                        contentType: "application/json",
                                         headers: {
                                             'Accept': 'application/json',
                                             'Content-Type': 'application/json'
-                                        },
-
+                                        }
                                     })
                                         .done(function () {
                                             location.reload();
@@ -186,6 +188,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('Wykona sie zawsze, status: ', status);
             });
 
-    };
+    }
     showAllBooks();
 });

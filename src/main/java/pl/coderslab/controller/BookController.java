@@ -10,7 +10,6 @@ import pl.coderslab.service.BookService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/books")
 public class BookController {
 
     private final BookService bookService;
@@ -19,29 +18,29 @@ public class BookController {
         this.bookService = bookService;
     }
 
-        @GetMapping("/")
+        @GetMapping("/books/get")
         public List<Book> books() {
                 return bookService.getList();
         }
 
-        @PostMapping("/")
+        @PostMapping("/books/post")
         public void addBook(@RequestBody Book book) {
                 bookService.addBook(book);
         }
 
-        @GetMapping("/{bookId}")
+        @GetMapping("/books/get/{bookId}")
         public Book book(@PathVariable String bookId) {
             long bookid = Long.parseLong(bookId);
             return bookService.getBook(bookid);
         }
 
-        @PutMapping("/{bookId}")
+        @PutMapping("/books/put/{bookId}")
         public Book updatebook(@PathVariable String bookId, @RequestBody Book book) {
             long bookid = Long.parseLong(bookId);
             return bookService.updateBook(bookid, book);
         }
 
-        @DeleteMapping("/{bookId}")
+        @DeleteMapping("/books/delete/{bookId}")
         public void deleteBook(@PathVariable String bookId) {
             long bookid = Long.parseLong(bookId);
             bookService.deleteBook(bookid);
